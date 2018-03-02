@@ -1,7 +1,238 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="art.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Meena's Art Supplies</title>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+<div class = "homepage">
+    <h1>Meena's Art Supplies</h1>
+    <h2>Your go-to site for paints, paper, prints, and more!</h2>
+    <main>
+
+        <div class = "navigation">
+
+            <!----Displays Total---->
+            <span>Total: $</span>
+            <span id = 'sum'>0.00</span>
+            <!----Button for Cart---->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#shoppingCart">
+                View Cart
+            </button>
+            <!--Modal for shopping cart (from BootStrap)--->
+            <div class="modal fade" id="shoppingCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Shopping Cart</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                             <!----Insert table here ---->
+                            <table class="table table-striped" id="cartTable">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Quantity</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <p id="totalPrice">
+                                <span>Total: $</span>
+                                <span id="total">0.00</span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" href="#checkOut">Checkout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!---Modal for checkout--->
+            <div class="modal fade" id="checkOut" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Checkout</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Thank you for shopping!</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="ClearCart()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!----Homepage----->
+        <div class = "homepage">
+            <div class = "product">
+                <img src = "https://img.michaels.com/L6/3/IOGLO/853527262/201892564/10327078_2.jpg?fit=inside|540:540" class = "image">
+                <p class = "price">
+                    <span>$</span>
+                    <span = "itemPrice" id = "itemOnePrice">40.00</span>
+                </p>
+                <p class = "itemName" id="itemOneName">Artists Loft 48-Piece Acrylic Paint Set</p>
+                <p span class = "itemQuant">
+                    <span>Quantity: </span>
+                    <span id="itemOneQuant">10</span>
+                    <span id="itemOneStock"> (In Stock)</span>
+                </p>
+                <p class = "ordering">
+                    <input id="itemOneRequested", type="number", value="1", min="1", max="10">
+                    <button onclick="addToCart(document.getElementById('itemOneName').innerHTML, document.getElementById('itemOnePrice').innerHTML,
+                 document.getElementById('itemOneQuant').innerHTML, document.getElementById('itemOneRequested').value,
+                 'itemOneRequested', 'itemOneStock', 'itemOneQuant')">Add To Cart</button>
+                </p>
+            </div>
+
+            <div class = "product">
+                <img src = "https://images-na.ssl-images-amazon.com/images/I/71HG40MscuL._SY355_.jpg" class = "image">
+                <p class = "price">
+                    <span>$</span>
+                    <span = "itemPrice" id = "itemTwoPrice">10.00</span>
+                </p>
+                <p class = "itemName" id="itemTwoName">Round Tip Paintbrushes</p>
+                <p span class = "itemQuant">
+                    <span>Quantity: </span>
+                    <span id="itemTwoQuant">15</span>
+                    <span id="itemTwoStock"> (In Stock)</span>
+                </p>
+                <p class = "ordering">
+                    <input id="itemTwoRequested", type="number", value="1", min="1", max="15">
+                    <button onclick="addToCart(document.getElementById('itemTwoName').innerHTML, document.getElementById('itemTwoPrice').innerHTML,
+                 document.getElementById('itemTwoQuant').innerHTML, document.getElementById('itemTwoRequested').value,
+                 'itemTwoRequested', 'itemTwoStock', 'itemTwoQuant')">Add To Cart</button>
+                </p>
+            </div>
+
+            <div class = "product">
+                <img src = "https://img.michaels.com/L6/3/IOGLO/821106160/179710817/10014390.jpg?fit=inside|1024:1024" class = "image">
+                <p class = "price">
+                    <span>$</span>
+                    <span = "itemPrice" id = "itemThreePrice">15.00</span>
+                </p>
+                <p class = "itemName" id="itemThreeName">Strathmore Sketch Pad</p>
+                <p span class = "itemQuant">
+                    <span>Quantity: </span>
+                    <span id="itemThreeQuant">10</span>
+                    <span id="itemThreeStock"> (In Stock)</span>
+                </p>
+                <p class = "ordering">
+                    <input id="itemThreeRequested", type="number", value="1", min="1", max="10">
+                    <button onclick="addToCart(document.getElementById('itemThreeName').innerHTML, document.getElementById('itemThreePrice').innerHTML,
+                 document.getElementById('itemTwoQuant').innerHTML, document.getElementById('itemTwoRequested').value,
+                 'itemThreeRequested', 'itemThreeStock', 'itemThreeQuant')">Add To Cart</button>
+                </p>
+            </div>
+
+            <div class = "product">
+                <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR76WIK7PA4XSrqMNzApxMSIbHK4o51NGpyLhm2qHvhybqZPIROEA" class = "image">
+                <p class = "price">
+                    <span>$</span>
+                    <span = "itemPrice" id = "itemFourPrice">20.00</span>
+                </p>
+                <p class = "itemName" id="itemFourName">Wooden Calligraphy Pens</p>
+                <p span class = "itemQuant">
+                    <span>Quantity: </span>
+                    <span id="itemFourQuant">25</span>
+                    <span id="itemFourStock"> (In Stock)</span>
+                </p>
+                <p class = "ordering">
+                    <input id="itemFourRequested", type="number", value="1", min="1", max="25">
+                    <button onclick="addToCart(document.getElementById('itemFourName').innerHTML, document.getElementById('itemFourPrice').innerHTML,
+                 document.getElementById('itemFourQuant').innerHTML, document.getElementById('itemFourRequested').value,
+                 'itemFourRequested', 'itemFourStock', 'itemFourQuant')">Add To Cart</button>
+                </p>
+            </div>
+
+            <div class = "product">
+                <img src = "https://images-na.ssl-images-amazon.com/images/I/91-e7qORnAL._SL1500_.jpg" class = "image">
+                <p class = "price">
+                    <span>$</span>
+                    <span = "itemPrice" id = "itemFivePrice">30.00</span>
+                </p>
+                <p class = "itemName" id="itemFiveName">Watercolor Set</p>
+                <p span class = "itemQuant">
+                    <span>Quantity: </span>
+                    <span id="itemFourQuant">15</span>
+                    <span id="itemFourStock"> (In Stock)</span>
+                </p>
+                <p class = "ordering">
+                    <input id="itemFiveRequested", type="number", value="1", min="1", max="15">
+                    <button onclick="addToCart(document.getElementById('itemFiveName').innerHTML, document.getElementById('itemFivePrice').innerHTML,
+                 document.getElementById('itemFiveQuant').innerHTML, document.getElementById('itemFiveRequested').value,
+                 'itemFiveRequested', 'itemFiveStock', 'itemFiveQuant')">Add To Cart</button>
+                </p>
+            </div>
+        </div>
+    </main>
+<script>
+    function addToCart(name, price, quantity, requested, maxName, stockName, quantName) {
+        var remaining = Number(quantity) - Number(requested);
+        if (remaining >= 0) {
+            //Calculate new amount:
+            var total = Number(document.getElementById('sum').innerHTML);
+            total += (Number(price) * Number(requested));
+            document.getElementById('sum').innerHTML = String(total);
+            //Update quantity:
+            document.getElementById(quantName).innerHTML = Number(remaining);
+            //Update max items available:
+            document.getElementById(maxName).max = Number(remaining);
+            //add to cart table:
+            var table = document.getElementById("cartTable");
+            var numRows = table.rows.length;
+            var isDuplicate = false;
+            var rowDuplicate = 0;
+            for (var i = 0; i < numRows; i++) {
+                if (table.rows[i].cells[0].innerHTML === name) {
+                    isDuplicate = true;
+                    rowDuplicate = i;
+                }
+            }
+            if (!isDuplicate) {
+                var row = table.insertRow(numRows);
+                var insertItem = row.insertCell(0);
+                var insertQuant = row.insertCell(1);
+                insertItem.innerHTML = name;
+                insertQuant.innerHTML = String(requested);
+            }
+            else {
+                var current = Number(table.rows[rowDuplicate].cells[1].innerHTML);
+                var updated = String(current + Number(requested));
+                table.rows[rowDuplicate].cells[1].innerHTML = updated;
+            }
+            document.getElementById('total').innerHTML = total;
+        }
+        if (remaining == 0){
+            document.getElementById(stockName).innerHTML = "(Out of Stock)";
+        }
+    }
+
+    function ClearCart(){
+        var table = document.getElementById("cartTable");
+        var numRows = table.rows.length;
+        for (var i = 1; i < numRows; i++) {
+            table.deleteRow(i);
+        }
+        document.getElementById('total').innerHTML = "$0.00";
+        document.getElementById('sum').innerHTML = "$0.00";
+    }
+</script>
 </body>
 </html>
